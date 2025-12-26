@@ -1,38 +1,53 @@
 package programa;
+
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Main {
-	
+
 	public static void main(String[] args) {
-		
+
 		Scanner in = new Scanner(System.in);
-		
-		System.out.println("");
-		System.out.println("");
-		System.out.println("  ██████╗ ██████╗  █████╗ ██████╗ ██╗  ██╗     █████╗ ███╗   ██╗ █████╗ ██╗     ██╗███████╗███████╗██████╗ \r\n"
-				+ " ██╔════╝ ██╔══██╗██╔══██╗██╔══██╗██║  ██║    ██╔══██╗████╗  ██║██╔══██╗██║     ██║╚══███╔╝██╔════╝██╔══██╗\r\n"
-				+ " ██║  ███╗██████╔╝███████║██████╔╝███████║    ███████║██╔██╗ ██║███████║██║     ██║  ███╔╝ █████╗  ██████╔╝\r\n"
-				+ " ██║   ██║██╔══██╗██╔══██║██╔═══╝ ██╔══██║    ██╔══██║██║╚██╗██║██╔══██║██║     ██║ ███╔╝  ██╔══╝  ██╔══██╗\r\n"
-				+ " ╚██████╔╝██║  ██║██║  ██║██║     ██║  ██║    ██║  ██║██║ ╚████║██║  ██║███████╗██║███████╗███████╗██║  ██║\r\n"
-				+ "  ╚═════╝ ╚═╝  ╚═╝╚═╝  ╚═╝╚═╝     ╚═╝  ╚═╝    ╚═╝  ╚═╝╚═╝  ╚═══╝╚═╝  ╚═╝╚══════╝╚═╝╚══════╝╚══════╝╚═╝  ╚═╝\r\n"
-				+ "                                                                                                           ");
-		System.out.println("");
-		System.out.print("   ¿El grafo es dirigido? (s/n):");
-		String lineaGrafoDirigido = in.nextLine();
-		
-		if ((lineaGrafoDirigido.equals("s")) || (lineaGrafoDirigido.equals("n")) || (lineaGrafoDirigido.equals("S")) || (lineaGrafoDirigido.equals("N"))) {
+		Mensajes mensaje = new Mensajes();
+		boolean repetir;
+		boolean dirigido;
+		ArrayList<String> grafoIntroducido = new ArrayList<>();
+		String lineaLeida;
+
+		do {
 			
-		}
-		
+			mensaje.inicio();
+			String lineaGrafoDirigido = in.nextLine();
+			repetir = false;
+
+			if ((lineaGrafoDirigido.equals("s")) || (lineaGrafoDirigido.equals("S"))) {
+				dirigido = true;
+			} else if ((lineaGrafoDirigido.equals("n")) || (lineaGrafoDirigido.equals("N"))) {
+				dirigido = false;
+			} else {
+				mensaje.limpiarConsola();
+				repetir = true;
+			}
+			
+		} while (repetir);
+
+		System.out.println("");
 		System.out.println("   Introduzca el grafo en el siguiente formato: 'A B P' Arista A, Arista B, Peso:");
+		System.out.println("   Para finalizar introduzca un .");
 		System.out.println("");
-		System.out.print("      >>> ");
-		String lineaLeida = in.nextLine();
-		System.out.println("");
-		System.out.println(lineaLeida);
 		
+		do {
+			
+			System.out.print("      >>> ");
+			lineaLeida = in.nextLine();
+			grafoIntroducido.add(lineaLeida);
+			
+		} while(!lineaLeida.contains("."));
+		
+		
+		System.out.println("");
+		System.out.println(grafoIntroducido);
+
 	}
 
-	
-	
 }
