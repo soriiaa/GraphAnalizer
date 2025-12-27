@@ -10,7 +10,7 @@ public class Main {
 		Scanner in = new Scanner(System.in);
 		Mensajes mensaje = new Mensajes();
 		boolean repetir;
-		boolean dirigido;
+		boolean dirigido = false;
 		ArrayList<String> grafoIntroducido = new ArrayList<>();
 		String lineaLeida;
 
@@ -40,13 +40,18 @@ public class Main {
 			
 			System.out.print("      >>> ");
 			lineaLeida = in.nextLine();
-			grafoIntroducido.add(lineaLeida);
+			
+			if (!lineaLeida.contains(".")) {
+				grafoIntroducido.add(lineaLeida);
+			}
 			
 		} while(!lineaLeida.contains("."));
 		
-		
 		System.out.println("");
 		System.out.println(grafoIntroducido);
+		
+		Grafo grafo = new Grafo(dirigido);
+		grafo.crearMatrizAdyacencia(grafoIntroducido);
 
 	}
 
